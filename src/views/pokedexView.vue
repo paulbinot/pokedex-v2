@@ -15,7 +15,7 @@
 import PokemonList from '@/components/PokemonList.vue';
 
 export default {
-  name: "pokedexView",
+  name: "PokedexView",
   components: { PokemonList }
 }
 

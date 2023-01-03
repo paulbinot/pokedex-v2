@@ -3,13 +3,15 @@
         <template #default>
             <!-- <a href="/pokemons/<%= pokemon.id %>"> -->
                 <div class="pokemon-grid-item corners">
-                    <a :href="`/pokemon/${pokemon.id}`">
+                      <router-link :to="{name:'PokemonView', params: {id: pokemon.id}}">
+
                         <div class="pokemon-grid-item__infos">
                         <h2>
-                            <span>#{{ pokemon.id }}</span>
-                            <p></p>
                             <span>
-                            {{ pokemon.name }}
+                              #{{ pokemon.id }} 
+                            </span><p></p>
+                            <span>
+                             {{ pokemon.name }}
                             </span>
                         </h2>
                         <div class="top-left-corner corner pixel outerpx"></div>
@@ -17,7 +19,7 @@
                         <div class="bottom-left-corner corner pixel outerpx"></div>
                         <div class="bottom-right-corner corner pixel outerpx"></div>
                         </div>
-                        <img :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`" :alt="`${pokemon.name} image`">
+                        <img :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`" :alt="`${pokemon.name} image`">
                         <!-- <a href="/pokemons/<%= pokemon.id %>"><button>view more</button> </a> -->
                         <a href="/pokemons/<%= pokemon.id %>">view more +</a>
                         <div class="top-left-corner corner pixel outerpx"></div>
@@ -50,7 +52,7 @@
                         <div class="pixel outerpx"></div>
                         <div class="pixel outerpx"></div>
                         </div>
-                    </a>
+                    </router-link>
                 </div>
                 <!-- </a> -->
         </template>
@@ -61,11 +63,14 @@
 </template>
   
 <script>
+import { RouterLink } from 'vue-router';
+
 export default {
-    name: 'Card',
+    name: "Card",
     props: {
         pokemon: Object
-    }
+    },
+    components: { RouterLink }
 }
 </script>
 
@@ -104,7 +109,6 @@ export default {
 
 .pokemon-grid-item img {
   margin-top: 3rem;
-  padding: 1rem;
 }
 
 .pokemon-grid-item__infos {

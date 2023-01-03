@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import pokedexView from '../views/pokedexView.vue'
+import pokedexView from '../views/PokedexView.vue'
 
 const routes = [
   {
@@ -8,16 +8,16 @@ const routes = [
     component: pokedexView
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/pokemon/:id',
+    name: 'PokemonView',
+    props: true,
+    component: () => import(/* webpackChunkName: "about" */ '../views/PokemonView.vue')
   },
   {
-    path: '/pokemon/:id'
-  }
+    path: '/types',
+    name: 'TypesView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/typesView.vue')
+  },
 ]
 
 const router = createRouter({

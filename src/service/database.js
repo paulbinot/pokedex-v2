@@ -9,3 +9,15 @@ export async function getAllPokemons() {
   };
   return pokemonList;
 };
+
+export async function getPokemonDetails(id) {
+  const response = await fetch(`${baseURL}pokemon/${id}`);
+  const pokemonDetails = await response.json();
+  return pokemonDetails;
+};
+
+export async function getAllTypes() {
+  const response = await fetch(`${baseURL}type`);
+  const allTypes = await response.json();
+  return allTypes;
+};

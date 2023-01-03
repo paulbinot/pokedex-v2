@@ -2,19 +2,169 @@
   <header>
     <img src="/images/Pokédex_logo.png" alt="pokedex logo" class="logo">
   </header>
-  <nav>
-    <router-link to="/">Pokedex</router-link>
-    |
-    <router-link to="/types">Types</router-link>
-    |
-    <router-link to="/types">Moves</router-link>
-  </nav>
-  <router-view/>
+  <div class="page-container">
+    <div class="separator"></div>
+    <nav>
+      <router-link to="/">Pokedex</router-link>
+      |
+      <router-link to="/types">Types</router-link>
+      |
+      <!-- <router-link to="/moves">Moves</router-link> -->
+    </nav>
+    <div class="separator"></div>
+  </div>
+  <div class="page-container">
+    <router-view />
+  </div>
+  <div class="page-container">
+    <Footer></Footer>
+  </div>
 </template>
+
+<script>
+import Footer from './components/Footer.vue';
+
+export default {
+  name: "app",
+  components: { Footer }
+}
+</script>
 
 <style>
 /* reset */
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}*{box-sizing:border-box}
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block
+}
+
+body {
+  line-height: 1
+}
+
+ol,
+ul {
+  list-style: none
+}
+
+blockquote,
+q {
+  quotes: none
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0
+}
+
+* {
+  box-sizing: border-box
+}
 
 #app {
   font-family: 'Press start 2P';
@@ -31,6 +181,7 @@ header {
 
 img {
   max-width: 100%;
+  width: 100%;
   image-rendering: pixelated;
 }
 
@@ -45,7 +196,9 @@ body {
 }
 
 nav {
-  margin: 1rem 0 2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 nav a {
@@ -61,6 +214,24 @@ nav a:hover {
 
 nav a.router-link-exact-active {
   color: yellow;
+}
+
+button {
+  border: 3px solid black;
+  font-family: 'Press Start 2P', serif;
+  padding: 0.5rem;
+}
+
+.page-container {
+  padding: 1rem;
+}
+
+.border {
+  border: 3px solid white;
+}
+
+.logo {
+  max-width: 500px;
 }
 
 /* ----------CORNERS---------- */
@@ -117,6 +288,37 @@ nav a.router-link-exact-active {
 
 .borderpx {
   background-color: white;
+}
+
+/* ----------FOOTER---------- */
+
+footer {
+  font-size: 0.75rem;
+  color: lightgray;
+  line-height: 2.4;
+  padding: 1rem;
+  border-color: lightgray !important;
+  background-color: rgb(27, 27, 28);
+}
+
+footer a {
+  color: rgb(182, 182, 112);
+  text-decoration: none;
+}
+
+footer .innerpx {
+  background-color: rgb(27, 27, 28);
+}
+
+footer .borderpx {
+  background-color: lightgray;
+}
+
+/* Séparateur */
+
+.separator {
+  border-top: 3px dashed white;
+  margin: 1rem 0;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
