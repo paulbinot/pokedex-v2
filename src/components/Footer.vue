@@ -1,7 +1,7 @@
 <template>
     <div class="separator"></div>
     <footer class="pokemons-infos__container border corners">
-      <p>> made with love by <a href="https://github.com/paulbinot/pokedexpress" target="_blank">Paul Binot</a></p>
+      <p>> made with love by <a href="https://www.paulbinot.com" target="_blank">Paul Binot</a></p>
       <p>> Data : © Pokémon Company and its affiliates</p>
   
       <div class="top-left-corner corner pixel outerpx"></div>
