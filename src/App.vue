@@ -170,7 +170,6 @@ table {
   font-family: 'Press start 2P';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
   color: white;
   padding: 1rem;
 }
@@ -216,6 +215,20 @@ nav a.router-link-exact-active {
   color: yellow;
 }
 
+.logo {
+  max-width: 500px;
+}
+
+/* GENERICS */
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
 button {
   border: 3px solid black;
   font-family: 'Press Start 2P', serif;
@@ -230,9 +243,6 @@ button {
   border: 3px solid white;
 }
 
-.logo {
-  max-width: 500px;
-}
 
 /* ----------CORNERS---------- */
 

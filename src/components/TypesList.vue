@@ -1,25 +1,26 @@
 <template>
   <div class="pokemons-infos__types">
-    <TypeTag v-for="oneType of allTypes.results" :key="oneType" :oneType="oneType.name" />
+    <TypeTag v-for="oneType of typesList" :key="oneType" :oneType="oneType.name" @click="selectedType(oneType.name)" />
   </div>
 </template>
     
 <script>
-import { getAllTypes } from '@/service/database';
 import TypeTag from '@/components/TypeTag.vue';
 
 export default {
   name: "TypesList",
-  // props: {
-  //   pokemonDetails: Object
-  // },
-  components: { TypeTag },
-  async setup() {
-    const allTypes = await getAllTypes();
-    return {
-      allTypes
-    };
+  props: {
+    typesList: {
+      type: Array,
+      required: true
+    }
   },
+  components: { TypeTag },
+  methods: {
+    selectedType(tagName) {
+      this.$emit("select", tagName);
+    }
+  }
 };
 </script>
   
@@ -34,5 +35,6 @@ export default {
   padding: 0.7rem;
   background-color: #fff;
   color: blue;
+  cursor: pointer;
 }
 </style>
