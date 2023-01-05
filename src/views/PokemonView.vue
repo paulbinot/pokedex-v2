@@ -431,9 +431,6 @@ export default {
         const response2 = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
         const response3 = await axios.get(response2.data.evolution_chain.url);
 
-        // console.log(response1.data)
-        // console.log(response2.data)
-        // console.log(response3.data)
         this.pokemon = response1.data;
         this.pokemonSpecies = response2.data;
         this.pokemonEvolutionChain = response3.data;
@@ -453,7 +450,7 @@ export default {
 </script>
 
 <style>
-/* ----------POKEMON PAGE---------- */
+/* ----------POKEMON PAGE----------
 
 .pokemon-infos {
   display: flex;
@@ -585,5 +582,5 @@ export default {
     top: 1rem;
   }
 
-}
+} */
 </style>

@@ -1,81 +1,82 @@
 <template>
-    <Suspense>
-        <template #default>
-            <!-- <a href="/pokemons/<%= pokemon.id %>"> -->
-                <div class="pokemon-grid-item corners">
-                      <router-link :to="{name:'PokemonView', params: {id: pokemon.id}}">
+  <Suspense>
+    <template #default>
+      <!-- <a href="/pokemons/<%= pokemon.id %>"> -->
+      <div class="pokemon-grid-item corners">
+        <router-link :to="{ name: 'PokemonView', params: { id: pokemon.id } }">
 
-                        <div class="pokemon-grid-item__infos">
-                        <h2>
-                            <span>
-                              #{{ pokemon.id }} 
-                            </span><p></p>
-                            <span>
-                             {{ pokemon.name }}
-                            </span>
-                        </h2>
-                        <div class="top-left-corner corner pixel outerpx"></div>
-                        <div class="top-right-corner corner pixel outerpx"></div>
-                        <div class="bottom-left-corner corner pixel outerpx"></div>
-                        <div class="bottom-right-corner corner pixel outerpx"></div>
-                        </div>
-                        <img :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`" :alt="`${pokemon.name} image`">
-                        <!-- <a href="/pokemons/<%= pokemon.id %>"><button>view more</button> </a> -->
-                        <a href="/pokemons/<%= pokemon.id %>">view more +</a>
-                        <div class="top-left-corner corner pixel outerpx"></div>
-                        <div class="top-right-corner corner pixel outerpx"></div>
-                        <div class="bottom-left-corner corner pixel outerpx"></div>
-                        <div class="bottom-right-corner-hd corner">
-                        <div class="pixel innerpx"></div>
-                        <div class="pixel innerpx"></div>
-                        <div class="pixel innerpx"></div>
-                        <div class="pixel innerpx"></div>
-                        <div class="pixel borderpx"></div>
-                        <div class="pixel innerpx"></div>
-                        <div class="pixel innerpx"></div>
-                        <div class="pixel innerpx"></div>
-                        <div class="pixel borderpx"></div>
-                        <div class="pixel outerpx"></div>
-                        <div class="pixel innerpx"></div>
-                        <div class="pixel innerpx"></div>
-                        <div class="pixel borderpx"></div>
-                        <div class="pixel outerpx"></div>
-                        <div class="pixel outerpx"></div>
-                        <div class="pixel innerpx"></div>
-                        <div class="pixel borderpx"></div>
-                        <div class="pixel outerpx"></div>
-                        <div class="pixel outerpx"></div>
-                        <div class="pixel outerpx"></div>
-                        <div class="pixel borderpx"></div>
-                        <div class="pixel outerpx"></div>
-                        <div class="pixel outerpx"></div>
-                        <div class="pixel outerpx"></div>
-                        <div class="pixel outerpx"></div>
-                        </div>
-                    </router-link>
-                </div>
-                <!-- </a> -->
-        </template>
-        <template #fallback>
-            chargement...
-        </template>
-    </Suspense>
+          <div class="pokemon-grid-item__infos">
+            <h2>
+              <span>
+                #{{ pokemon.id }}
+              </span>
+              <p></p>
+              <span>
+                {{ pokemon.name }}
+              </span>
+            </h2>
+            <div class="top-left-corner corner pixel outerpx"></div>
+            <div class="top-right-corner corner pixel outerpx"></div>
+            <div class="bottom-left-corner corner pixel outerpx"></div>
+            <div class="bottom-right-corner corner pixel outerpx"></div>
+          </div>
+          <img :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`"
+            :alt="`${pokemon.name} image`">
+          <!-- <a href="/pokemons/<%= pokemon.id %>"><button>view more</button> </a> -->
+          <a href="/pokemons/<%= pokemon.id %>">view more +</a>
+          <div class="top-left-corner corner pixel outerpx"></div>
+          <div class="top-right-corner corner pixel outerpx"></div>
+          <div class="bottom-left-corner corner pixel outerpx"></div>
+          <div class="bottom-right-corner-hd corner">
+            <div class="pixel innerpx"></div>
+            <div class="pixel innerpx"></div>
+            <div class="pixel innerpx"></div>
+            <div class="pixel innerpx"></div>
+            <div class="pixel borderpx"></div>
+            <div class="pixel innerpx"></div>
+            <div class="pixel innerpx"></div>
+            <div class="pixel innerpx"></div>
+            <div class="pixel borderpx"></div>
+            <div class="pixel outerpx"></div>
+            <div class="pixel innerpx"></div>
+            <div class="pixel innerpx"></div>
+            <div class="pixel borderpx"></div>
+            <div class="pixel outerpx"></div>
+            <div class="pixel outerpx"></div>
+            <div class="pixel innerpx"></div>
+            <div class="pixel borderpx"></div>
+            <div class="pixel outerpx"></div>
+            <div class="pixel outerpx"></div>
+            <div class="pixel outerpx"></div>
+            <div class="pixel borderpx"></div>
+            <div class="pixel outerpx"></div>
+            <div class="pixel outerpx"></div>
+            <div class="pixel outerpx"></div>
+            <div class="pixel outerpx"></div>
+          </div>
+        </router-link>
+      </div>
+      <!-- </a> -->
+    </template>
+    <template #fallback>
+      chargement...
+    </template>
+  </Suspense>
 </template>
   
 <script>
 import { RouterLink } from 'vue-router';
 
 export default {
-    name: "Card",
-    props: {
-        pokemon: Object
-    },
-    components: { RouterLink }
+  name: "Card",
+  props: {
+    pokemon: Object
+  },
+  components: { RouterLink }
 }
 </script>
 
 <style>
-
 /* ----------POKEMON GRID---------- */
 
 .pokemon-grid {
@@ -137,7 +138,7 @@ export default {
     width: 28%;
     margin: 1.3rem 1rem;
   }
-  
+
 }
 
 @media screen and (min-width: 900px) {
@@ -145,7 +146,6 @@ export default {
     width: 21%;
     margin: 1.3rem 1rem;
   }
-  
-}
 
+}
 </style>

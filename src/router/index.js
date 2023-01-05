@@ -17,7 +17,7 @@ const routes = [
     path: '/types',
     name: 'TypesView',
     component: () => import(/* webpackChunkName: "about" */ '../views/typesView.vue')
-  },
+  }
 ]
 
 const router = createRouter({

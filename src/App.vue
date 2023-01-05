@@ -188,6 +188,7 @@ body {
   background-color: blue;
   margin: 0 auto;
   max-width: 1200px;
+  line-height: 1.3;
 }
 
 .logo {
@@ -329,6 +330,140 @@ footer .borderpx {
 .separator {
   border-top: 3px dashed white;
   margin: 1rem 0;
+}
+
+/* ----------POKEMON PAGE---------- */
+
+.pokemon-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pokemon-infos .top-left,
+.bottom-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.pokemon-infos .top {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pokemons-infos__image {
+  background-color: rgb(27, 27, 28);
+}
+
+.pokemons-infos__image .innerpx {
+  background-color: rgb(27, 27, 28);
+}
+
+.pokemon-infos h1 {
+  font-size: 2rem;
+  line-height: 1.4;
+  margin: 0.5rem 0;
+}
+
+.pokemon-infos h2 {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.pokemon-infos h3 {
+  line-height: 1.4;
+}
+
+.pokemons-infos__types {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pokemons-infos__types .type {
+  padding: 0.7rem;
+  background-color: #fff;
+  gap: 0.7rem;
+}
+
+.pokemons-infos__container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pokemons-infos__base {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pokemons-infos__base .left,
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pokemons-infos__base .left {
+  color: lightgray;
+}
+
+.pokemons-infos__base .right {
+  color: yellow;
+  text-align: right;
+}
+
+.pokemons-infos__base .hp {
+  font-size: 150%;
+}
+
+.btns {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.7rem;
+}
+
+.btns a {
+  display: flex;
+  color: yellow;
+  font-size: 1.2rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btns a span {
+  transform: translateY(-5px);
+}
+
+.legend {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+}
+
+
+@media screen and (min-width: 750px) {
+  .pokemon-infos .top {
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: center;
+  }
+
+  .pokemon-infos .top-left {
+    width: 50%;
+  }
+
+  .pokemon-infos .bottom-right {
+    width: 50%;
+  }
+
+  .sticky {
+    position: sticky;
+    top: 1rem;
+  }
+
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
