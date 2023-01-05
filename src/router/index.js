@@ -1,11 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import pokedexView from '../views/PokedexView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: pokedexView
+    component: () => import(/* webpackChunkName: "about" */ '../views/PokedexView.vue')
   },
   {
     path: '/pokemon/:id',
