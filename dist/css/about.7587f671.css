@@ -1,1 +1,0 @@
-.pokemons-infos__types{display:flex;flex-wrap:wrap;gap:.7rem}.pokemons-infos__types .type{padding:.7rem;background-color:#fff;color:blue;cursor:pointer}#types-page{display:flex;flex-direction:column;gap:2rem}#types-page .pokemon-grid-item{width:40%}@media screen and (max-width:750px){#types-page .pokemon-grid-item{width:44%}}#types-page h4{color:#d3d3d3;padding-bottom:.7rem}
