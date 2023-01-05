@@ -12,11 +12,10 @@
 
 <script>
 import TypesList from '@/components/TypesList.vue';
-import TypeTag from '@/components/TypeTag.vue';
 
 export default {
 name: "typesView",
-components: { TypeTag, TypesList }
+components: { TypesList }
 }
 </script>
 

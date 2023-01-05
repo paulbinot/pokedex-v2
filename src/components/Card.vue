@@ -134,7 +134,7 @@ export default {
 
 @media screen and (min-width: 750px) {
   .pokemon-grid-item {
-    width: 25%;
+    width: 28%;
     margin: 1.3rem 1rem;
   }
   
@@ -142,7 +142,7 @@ export default {
 
 @media screen and (min-width: 900px) {
   .pokemon-grid-item {
-    width: 20%;
+    width: 21%;
     margin: 1.3rem 1rem;
   }
   
