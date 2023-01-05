@@ -171,7 +171,7 @@ table {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white;
-  padding: 1rem;
+  /* padding: 1rem; */
 }
 
 header {
