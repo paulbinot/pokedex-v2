@@ -4,18 +4,18 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import(/* webpackChunkName: "about" */ '../views/PokedexView.vue')
+    component: () => import('../views/PokedexView.vue')
   },
   {
     path: '/pokemon/:id',
     name: 'PokemonView',
     props: true,
-    component: () => import(/* webpackChunkName: "about" */ '../views/PokemonView.vue')
+    component: () => import('../views/PokemonView.vue')
   },
   {
     path: '/types',
     name: 'TypesView',
-    component: () => import(/* webpackChunkName: "about" */ '../views/typesView.vue')
+    component: () => import('../views/typesView.vue')
   }
 ]
 
