@@ -41,3 +41,23 @@ export async function getTypeInfos(typeName) {
   return typeInfos;
 };
 
+export async function getPokemonById(id) {
+  const response = await axios.get(`${baseURL}pokemon/${id}`);
+  response.data.weight = response.data.weight / 10;
+  return response.data;
+};
+
+export async function getPokemonSpeciesById(id) {
+  const response = await axios.get(`${baseURL}pokemon-species/${id}`);
+  
+  const flavorTextEntries = response.data.flavor_text_entries.filter(enEntries => enEntries.language.name === "en")
+  response.data.text = flavorTextEntries[flavorTextEntries.length - 1].flavor_text;
+  
+  return response.data;
+};
+
+export async function getEvolutionChainById(url) {
+  const response = await axios.get(url);
+  return response.data;
+};
+

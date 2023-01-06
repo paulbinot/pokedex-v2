@@ -150,6 +150,17 @@
                   <p>{{ pokemon.stats[5].base_stat }}</p>
                 </div>
               </div>
+              <Separator></Separator>
+              <div class="pokemons-infos__base">
+                <div class="left">
+                  <h4>Base happiness</h4>
+                  <h4>Capture rate</h4>
+                </div>
+                <div class="right">
+                  <p>{{ pokemonSpecies.base_happiness }}</p>
+                  <p>{{ pokemonSpecies.capture_rate }}</p>
+                </div>
+              </div>
     
               <div class="top-left-corner corner pixel outerpx"></div>
               <div class="top-right-corner corner pixel outerpx"></div>
@@ -288,6 +299,31 @@
             </div>
             <div class="pokemons-infos__container border corners">
               <h2>> More infos :</h2>
+              <div class="pokemons-infos__base">
+                <div class="left">
+                  <h4>Avg. height</h4>
+                  <h4>Avg. weight</h4>
+                  <h4>Color</h4>
+                  <h4>Shape</h4>
+                </div>
+                <div class="right">
+                  <p>{{ pokemon.height }}0 cm</p>
+                  <p>{{ pokemon.weight }} kg</p>
+                  <p>{{ pokemonSpecies.color.name }}</p>
+                  <p>{{ pokemonSpecies.shape.name }}</p>
+                </div>
+              </div>
+              <Separator></Separator>
+              <div class="pokemons-infos__base">
+                <div class="left">
+                  <h4>Legendary</h4>
+                  <h4>Mythical</h4>
+                </div>
+                <div class="right">
+                  <p v-if="pokemonSpecies.is_legendary">yes</p><p v-else>no</p>
+                  <p v-if="pokemonSpecies.is_mythical">yes</p><p v-else>no</p>
+                </div>
+              </div>
               <Separator></Separator>
               <h3>/ Name in other languages :</h3>
               <div class="pokemons-infos__base">
@@ -308,7 +344,6 @@
                   <p>{{ pokemonSpecies.names[2].name }}</p>
                 </div>
               </div>
-              <Separator></Separator>
     
               <div class="top-left-corner corner pixel outerpx"></div>
               <div class="top-right-corner corner pixel outerpx"></div>
@@ -438,10 +473,10 @@
 </template>
 
 <script>
-import axios from 'axios';
 import TypeTag from '@/components/TypeTag.vue';
 import AbilitiesList from '@/components/AbilitiesList.vue';
 import Separator from '@/components/Separator.vue';
+import { getPokemonById, getPokemonSpeciesById, getEvolutionChainById  } from '@/service/database';
 
 export default {
   name: 'PokemonView',
@@ -466,18 +501,13 @@ export default {
   methods: {
     async fetchPokemon(id) {
       try {
-        const response1 = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-        const response2 = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
-        if (response2.data.evolution_chain) {
-          const response3 = await axios.get(response2.data.evolution_chain.url);
-          this.pokemonEvolutionChain = response3.data;
+        this.pokemon = await getPokemonById(id);
+        this.pokemonSpecies = await getPokemonSpeciesById(id);
+
+        if (this.pokemonSpecies.evolution_chain) {
+          this.pokemonEvolutionChain = await getEvolutionChainById(this.pokemonSpecies.evolution_chain.url);
         }
 
-        const flavorTextEntries = response2.data.flavor_text_entries.filter(enEntries => enEntries.language.name === "en")
-        response2.data.text = flavorTextEntries[flavorTextEntries.length - 1].flavor_text;
-
-        this.pokemon = response1.data;
-        this.pokemonSpecies = response2.data;
         this.isloading = false;
       } catch (error) {
         console.error(error)
@@ -494,137 +524,5 @@ export default {
 </script>
 
 <style>
-/* ----------POKEMON PAGE----------
 
-.pokemon-infos {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.pokemon-infos .top-left,
-.bottom-right {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.pokemon-infos .top {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.pokemons-infos__image {
-  background-color: rgb(27, 27, 28);
-}
-
-.pokemons-infos__image .innerpx {
-  background-color: rgb(27, 27, 28);
-}
-
-.pokemon-infos h1 {
-  font-size: 2rem;
-  line-height: 1.4;
-  margin: 0.5rem 0;
-}
-
-.pokemon-infos h2 {
-  font-size: 1.2rem;
-  line-height: 1.5;
-}
-
-.pokemon-infos h3 {
-  line-height: 1.4;
-}
-
-.pokemons-infos__types {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.pokemons-infos__types .type {
-  padding: 0.7rem;
-  background-color: #fff;
-  gap: 0.7rem;
-}
-
-.pokemons-infos__container {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.pokemons-infos__base {
-  display: flex;
-  justify-content: space-between;
-}
-
-.pokemons-infos__base .left,
-.right {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.pokemons-infos__base .left {
-  color: lightgray;
-}
-
-.pokemons-infos__base .right {
-  color: yellow;
-  text-align: right;
-}
-
-.pokemons-infos__base .hp {
-  font-size: 150%;
-}
-
-.btns {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 0.7rem;
-}
-
-.btns a {
-  display: flex;
-  color: yellow;
-  font-size: 1.2rem;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.btns a span {
-  transform: translateY(-5px);
-}
-
-.legend {
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-}
-
-
-@media screen and (min-width: 750px) {
-  .pokemon-infos .top {
-    flex-direction: row;
-    gap: 2rem;
-    justify-content: center;
-  }
-
-  .pokemon-infos .top-left {
-    width: 50%;
-  }
-
-  .pokemon-infos .bottom-right {
-    width: 50%;
-  }
-
-  .sticky {
-    position: sticky;
-    top: 1rem;
-  }
-
-} */
 </style>

@@ -1,8 +1,8 @@
 <template>
 	<div class="ability">
-		<RouterLink :to="ability.url">
+		<!-- <RouterLink :to="ability.url"> -->
 			{{ ability.name }}
-		</RouterLink>
+		<!-- </RouterLink> -->
 	</div>
 </template>
 <script>
