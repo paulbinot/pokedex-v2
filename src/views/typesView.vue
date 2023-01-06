@@ -3,7 +3,7 @@
     <h1>All types :</h1>
     <div v-if="typeListIsLoading">Types list loading...</div>
     <TypesList v-else :typesList="this.typesList" @select="fetchPokemons"></TypesList>
-    <div class="separator"></div>
+    <Separator></Separator>
     <div class="pokemon-infos">
       <div class="top">  
         <div class="top-left">
@@ -14,22 +14,22 @@
               <p v-if="typeInfosAreLoading === 'loading'">Type infos are loading ...</p>
               <div class="infos" v-if="typeInfosAreLoading === 'loaded'">
                 <h4>Number of pokemon: <span style="color: yellow;" v-if="pokemonListIsLoading === 'loading'">Loading...</span><span style="color: yellow;" v-if="pokemonListIsLoading === 'loaded'">{{ pokemonsOfType.length }}</span></h4>
-                <div class="separator"></div>
+                <Separator></Separator>
                 <h4>Double damage <span style="color: red;">FROM</span> :</h4>
                 <p v-for="oneType in typeInfos.damage_relations.double_damage_from" :key="oneType">=> {{ oneType.name }}</p>
-                <div class="separator"></div>
+                <Separator></Separator>
                 <h4>Double damage <span style="color: green;">TO</span> :</h4>
                 <p v-for="oneType in typeInfos.damage_relations.double_damage_to" :key="oneType">=> {{ oneType.name }}</p>
-                <div class="separator"></div>
+                <Separator></Separator>
                 <h4>Half damage <span style="color: red;">FROM</span> :</h4>
                 <p v-for="oneType in typeInfos.damage_relations.half_damage_from" :key="oneType">=> {{ oneType.name }}</p>
-                <div class="separator"></div>
+                <Separator></Separator>
                 <h4>Half damage <span style="color: green;">TO</span> :</h4>
                 <p v-for="oneType in typeInfos.damage_relations.half_damage_to" :key="oneType">=> {{ oneType.name }}</p>
-                <div class="separator"></div>
+                <Separator></Separator>
                 <h4>No damage <span style="color: red;">FROM</span> :</h4>
                 <p v-for="oneType in typeInfos.damage_relations.no_damage_from" :key="oneType">=> {{ oneType.name }}</p>
-                <div class="separator"></div>
+                <Separator></Separator>
                 <h4>No damage <span style="color: green;">TO</span> :</h4>
                 <p v-for="oneType in typeInfos.damage_relations.no_damage_to" :key="oneType">=> {{ oneType.name }}</p>
               </div>
@@ -79,12 +79,14 @@
 
 <script>
 import TypesList from '@/components/TypesList.vue';
-import axios from 'axios';
+// import axios from 'axios';
 import PokemonList from '@/components/PokemonList.vue';
+import { getAllTypes, getTypeInfos, getPokemonsOfOneType } from '@/service/database';
+import Separator from '@/components/Separator.vue';
 
 export default {
   name: "typesView",
-  components: { TypesList, PokemonList },
+  components: { TypesList, PokemonList, Separator },
   data() {
     return {
       typesList: [],
@@ -101,26 +103,23 @@ export default {
   },
   methods: {
     async fetchPokemonTypes() {
-      const response = await axios.get(`https://pokeapi.co/api/v2/type?limit=18`);
-
-      this.typesList = response.data.results;
+      this.typesList = await getAllTypes();
       this.typeListIsLoading = false;
     },
     async fetchPokemons(tagName) {
+      // Name update for the page render
       this.selectedTypeName = tagName;
+
+      // Loading variables
       this.typeInfosAreLoading = "loading";
       this.pokemonListIsLoading = "loading";
-      const response = await axios.get(`https://pokeapi.co/api/v2/type/${tagName}`);
-      this.typeInfos = response.data;
-      console.log(this.typeInfos)
-      this.typeInfosAreLoading = "loaded";
-      for (const pokemon of response.data.pokemon) {
-        const response = await axios.get(pokemon.pokemon.url);
-        pokemon.id = response.data.id;
-        pokemon.name = pokemon.pokemon.name;
-      }
 
-      this.pokemonsOfType = response.data.pokemon.filter(pokemon => pokemon.id <= 905)
+      // first api call for type infos
+      this.typeInfos = await getTypeInfos(tagName);
+      this.typeInfosAreLoading = "loaded";
+
+      // Second API call (because this call is so long) for type pokemons
+      this.pokemonsOfType = await getPokemonsOfOneType(tagName);
       this.pokemonListIsLoading = "loaded";
     }
   }

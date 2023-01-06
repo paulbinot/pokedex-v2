@@ -1,5 +1,5 @@
 <template>
-    <div class="separator"></div>
+    <Separator></Separator>
     <footer class="pokemons-infos__container border corners">
       <p>> made with love by <a href="https://www.paulbinot.com" target="_blank">Paul Binot</a></p>
       <p>> Data : © Pokémon Company and its affiliates</p>
@@ -43,8 +43,11 @@
 </template>
 
 <script>
+import Separator from './Separator.vue';
+
 export default {
-  name: "Footer"
+    name: "Footer",
+    components: { Separator }
 }
 </script>
 

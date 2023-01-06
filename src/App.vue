@@ -3,7 +3,7 @@
     <img src="/images/Pokédex_logo.png" alt="pokedex logo" class="logo">
   </header>
   <div class="page-container">
-    <div class="separator"></div>
+    <Separator></Separator>
     <nav>
       <router-link to="/">Pokedex</router-link>
       |
@@ -11,7 +11,8 @@
       |
       <!-- <router-link to="/moves">Moves</router-link> -->
     </nav>
-    <div class="separator"></div>
+    <Separator></Separator>
+
   </div>
   <div class="page-container">
     <router-view />
@@ -23,10 +24,11 @@
 
 <script>
 import Footer from './components/Footer.vue';
+import Separator from './components/Separator.vue';
 
 export default {
   name: "app",
-  components: { Footer }
+  components: { Footer, Separator }
 }
 </script>
 
@@ -327,10 +329,10 @@ footer .borderpx {
 
 /* Séparateur */
 
-.separator {
+/* .separator {
   border-top: 3px dashed white;
   margin: 1rem 0;
-}
+} */
 
 /* ----------POKEMON PAGE---------- */
 

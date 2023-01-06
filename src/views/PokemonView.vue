@@ -93,6 +93,44 @@
               </div>
             </div>
             <div class="pokemons-infos__container border corners">
+              <h4>> {{ pokemonSpecies.text }}</h4>
+    
+              <div class="top-left-corner corner pixel outerpx"></div>
+              <div class="top-right-corner corner pixel outerpx"></div>
+              <div class="bottom-left-corner corner pixel outerpx"></div>
+              <div class="bottom-right-corner-hd corner">
+                <div class="pixel innerpx"></div>
+                <div class="pixel innerpx"></div>
+                <div class="pixel innerpx"></div>
+                <div class="pixel innerpx"></div>
+                <div class="pixel borderpx"></div>
+    
+                <div class="pixel innerpx"></div>
+                <div class="pixel innerpx"></div>
+                <div class="pixel innerpx"></div>
+                <div class="pixel borderpx"></div>
+                <div class="pixel outerpx"></div>
+    
+                <div class="pixel innerpx"></div>
+                <div class="pixel innerpx"></div>
+                <div class="pixel borderpx"></div>
+                <div class="pixel outerpx"></div>
+                <div class="pixel outerpx"></div>
+    
+                <div class="pixel innerpx"></div>
+                <div class="pixel borderpx"></div>
+                <div class="pixel outerpx"></div>
+                <div class="pixel outerpx"></div>
+                <div class="pixel outerpx"></div>
+    
+                <div class="pixel borderpx"></div>
+                <div class="pixel outerpx"></div>
+                <div class="pixel outerpx"></div>
+                <div class="pixel outerpx"></div>
+                <div class="pixel outerpx"></div>
+              </div>
+            </div>
+            <div class="pokemons-infos__container border corners">
               <h2>> Stats :</h2>
               <div class="pokemons-infos__base">
                 <div class="left">
@@ -250,7 +288,7 @@
             </div>
             <div class="pokemons-infos__container border corners">
               <h2>> More infos :</h2>
-              <div class="separator"></div>
+              <Separator></Separator>
               <h3>/ Name in other languages :</h3>
               <div class="pokemons-infos__base">
                 <div class="left">
@@ -270,7 +308,7 @@
                   <p>{{ pokemonSpecies.names[2].name }}</p>
                 </div>
               </div>
-              <div class="separator"></div>
+              <Separator></Separator>
     
               <div class="top-left-corner corner pixel outerpx"></div>
               <div class="top-right-corner corner pixel outerpx"></div>
@@ -403,10 +441,11 @@
 import axios from 'axios';
 import TypeTag from '@/components/TypeTag.vue';
 import AbilitiesList from '@/components/AbilitiesList.vue';
+import Separator from '@/components/Separator.vue';
 
 export default {
   name: 'PokemonView',
-  components: { TypeTag, AbilitiesList },
+  components: { TypeTag, AbilitiesList, Separator },
   props: {
     id: {
       // type: Number,
@@ -429,11 +468,16 @@ export default {
       try {
         const response1 = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
         const response2 = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
-        const response3 = await axios.get(response2.data.evolution_chain.url);
+        if (response2.data.evolution_chain) {
+          const response3 = await axios.get(response2.data.evolution_chain.url);
+          this.pokemonEvolutionChain = response3.data;
+        }
+
+        const flavorTextEntries = response2.data.flavor_text_entries.filter(enEntries => enEntries.language.name === "en")
+        response2.data.text = flavorTextEntries[flavorTextEntries.length - 1].flavor_text;
 
         this.pokemon = response1.data;
         this.pokemonSpecies = response2.data;
-        this.pokemonEvolutionChain = response3.data;
         this.isloading = false;
       } catch (error) {
         console.error(error)
