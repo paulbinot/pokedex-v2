@@ -15,7 +15,13 @@ const routes = [
   {
     path: '/types',
     name: 'TypesView',
-    component: () => import('../views/typesView.vue')
+    component: () => import('../views/TypesView.vue')
+  },
+  {
+    path: '/types/:name',
+    name: 'TypeDetailsView',
+    props: true,
+    component: () => import('../views/TypeDetailsView.vue')
   }
 ]
 

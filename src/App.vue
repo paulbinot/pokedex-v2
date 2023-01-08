@@ -9,7 +9,6 @@
       |
       <router-link to="/types">Types</router-link>
       |
-      <!-- <router-link to="/moves">Moves</router-link> -->
     </nav>
     <Separator></Separator>
 
