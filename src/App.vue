@@ -444,6 +444,18 @@ footer .borderpx {
   left: 1rem;
 }
 
+/* SCROLLBAR */
+
+::-webkit-scrollbar {
+    background-color: blue;
+    width: 6px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: lightgray;
+}
+
 
 @media screen and (min-width: 750px) {
   .pokemon-infos .top {

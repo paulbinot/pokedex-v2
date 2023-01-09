@@ -1,6 +1,6 @@
 <template>
   <div>
-    <template v-if="isloading">Chargement...</template>
+    <template v-if="isloading">Pokemon loading...</template>
 
     <template v-else>
       <div class="pokemon-infos">
@@ -153,12 +153,12 @@
               <Separator></Separator>
               <div class="pokemons-infos__base">
                 <div class="left">
-                  <h4>Base happiness</h4>
-                  <h4>Capture rate</h4>
+                  <h4 v-if="pokemonSpecies.base_happiness">Base happiness</h4>
+                  <h4 v-if="pokemonSpecies.capture_rate">Capture rate</h4>
                 </div>
                 <div class="right">
-                  <p>{{ pokemonSpecies.base_happiness }}</p>
-                  <p>{{ pokemonSpecies.capture_rate }}</p>
+                  <p v-if="pokemonSpecies.base_happiness">{{ pokemonSpecies.base_happiness }}</p>
+                  <p v-if="pokemonSpecies.capture_rate">{{ pokemonSpecies.capture_rate }}</p>
                 </div>
               </div>
     
@@ -219,9 +219,9 @@
             </div>
     
             <div class="pokemons-infos__container border corners">
-              <h2>> potentials abilities :</h2>
+              <h2>> Abilities :</h2>
     
-              <AbilitiesList :abilities="pokemon.abilities"></AbilitiesList>
+              <AbilitiesList :abilities="pokemonAbilities"></AbilitiesList>
     
               <div class="top-left-corner corner pixel outerpx"></div>
               <div class="top-right-corner corner pixel outerpx"></div>
@@ -380,86 +380,10 @@
                 <div class="pixel outerpx"></div>
               </div>
             </div>
-            <!-- female-->
-            <div class="pokemons-infos__image border corners" v-if="pokemon.sprites.front_female">
-              <img :src="pokemon.sprites.front_shiny" :alt="`${pokemon.name} image`">
-              <div class="legend">=> Female</div>
-    
-              <div class="top-left-corner corner pixel outerpx"></div>
-              <div class="top-right-corner corner pixel outerpx"></div>
-              <div class="bottom-left-corner corner pixel outerpx"></div>
-              <div class="bottom-right-corner-hd corner">
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-              </div>
-            </div>
-    
-            <!-- female shiny-->
-            <div class="pokemons-infos__image border corners" v-if="pokemon.sprites.front_shiny_female">
-              <img :src="pokemon.sprites.front_shiny" :alt="`${pokemon.name} image`">
-              <div class="legend">=> Shiny female</div>
-    
-              <div class="top-left-corner corner pixel outerpx"></div>
-              <div class="top-right-corner corner pixel outerpx"></div>
-              <div class="bottom-left-corner corner pixel outerpx"></div>
-              <div class="bottom-right-corner-hd corner">
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-              </div>
+
+            <div class="evolution-chain-container">
+              <h2>> Evolution chain</h2>
+              <EvolutionChain v-if="this.pokemonEvolutionChain.length !== 0" :pokemonList="this.pokemonEvolutionChain" @click="updatePokemon(this.$route.params.id)"></EvolutionChain>
             </div>
     
           </div>
@@ -476,11 +400,13 @@
 import TypeTag from '@/components/TypeTag.vue';
 import AbilitiesList from '@/components/AbilitiesList.vue';
 import Separator from '@/components/Separator.vue';
-import { getPokemonById, getPokemonSpeciesById, getEvolutionChainById  } from '@/service/database';
+import { getPokemonById, getPokemonSpeciesById, getPokemonAbilities, getEvolutionChainByURL } from '@/service/database';
+import EvolutionChain from '@/components/EvolutionChain.vue';
+import TypesList from '@/components/TypesList.vue';
 
 export default {
   name: 'PokemonView',
-  components: { TypeTag, AbilitiesList, Separator },
+  components: { TypeTag, AbilitiesList, Separator, EvolutionChain, TypesList },
   props: {
     id: {
       // type: Number,
@@ -491,7 +417,8 @@ export default {
     return {
       pokemon: {},
       pokemonSpecies: {},
-      pokemonEvolutionChain: {},
+      pokemonEvolutionChain: [],
+      pokemonAbilities: [],
       isloading: true
     }
   },
@@ -503,9 +430,10 @@ export default {
       try {
         this.pokemon = await getPokemonById(id);
         this.pokemonSpecies = await getPokemonSpeciesById(id);
+        this.pokemonAbilities = await getPokemonAbilities(id);
 
         if (this.pokemonSpecies.evolution_chain) {
-          this.pokemonEvolutionChain = await getEvolutionChainById(this.pokemonSpecies.evolution_chain.url);
+          this.pokemonEvolutionChain = await getEvolutionChainByURL(this.pokemonSpecies.evolution_chain.url);
         }
 
         this.isloading = false;
@@ -523,6 +451,5 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
 </style>

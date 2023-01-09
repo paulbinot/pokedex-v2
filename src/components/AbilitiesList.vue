@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Ability v-for="ability of abilities" :key="ability.slot" :ability="ability.ability"/>
+        <Ability v-for="ability of abilities" :key="ability.id" :ability="ability"/>
     </div>
 </template>
 <script>

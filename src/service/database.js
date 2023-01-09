@@ -23,15 +23,52 @@ export async function getAllTypes() {
   return allTypes;
 };
 
+// Without promise.all :
+// export async function getPokemonsOfOneType(typeName) {
+//   const response = await axios.get(`${baseURL}type/${typeName}`);
+//   for (const pokemon of response.data.pokemon) {
+//     const response = axios.get(pokemon.pokemon.url);
+    
+//       pokemon.id = response.data.id;
+//       pokemon.name = pokemon.pokemon.name;
+//   }
+
+
+//   return response.data.pokemon.filter(pokemon => pokemon.id <= 905);
+// };
+
 export async function getPokemonsOfOneType(typeName) {
   const response = await axios.get(`${baseURL}type/${typeName}`);
-  for (const pokemon of response.data.pokemon) {
-    const response = await axios.get(pokemon.pokemon.url);
-    pokemon.id = response.data.id;
-    pokemon.name = pokemon.pokemon.name;
+
+  const pokemonPromises = response.data.pokemon.map(pokemon => {
+    return axios.get(pokemon.pokemon.url).then(res => {
+      pokemon.id = res.data.id;
+      pokemon.name = pokemon.pokemon.name;
+      return pokemon;
+    });
+  });
+
+  const pokemonList = await Promise.all(pokemonPromises);
+
+  return pokemonList.filter(pokemon => pokemon.id <= 905);
+};
+
+export async function getPokemonAbilities(pokemonId) {
+  const response = await axios.get(`${baseURL}pokemon/${pokemonId}`);
+  const abilities = response.data.abilities;
+
+  const abilitiesPromises = abilities.map(ability => {
+    return axios.get(ability.ability.url).then(res => res.data);
+  });
+
+  const abilitiesList = await Promise.all(abilitiesPromises);
+  
+  for (const ability of abilitiesList) {
+    const enEffectEntries = ability.effect_entries.filter(entry => entry.language.name === "en");
+    ability.text = enEffectEntries[enEffectEntries.length - 1].effect;
   }
 
-  return response.data.pokemon.filter(pokemon => pokemon.id <= 905);
+  return abilitiesList;
 };
 
 export async function getTypeInfos(typeName) {
@@ -56,8 +93,32 @@ export async function getPokemonSpeciesById(id) {
   return response.data;
 };
 
-export async function getEvolutionChainById(url) {
+export async function getEvolutionChainByURL(url) {
   const response = await axios.get(url);
-  return response.data;
+  const rawChain = response.data;
+
+  // let chainEnd = true;
+  let step = rawChain.chain;
+  const chain = [];
+
+  while (1) {
+    chain.push(step.species);
+    if (step.evolves_to.length === 0) {
+      break
+    } else {
+      step = step.evolves_to[0];
+    }
+  };
+
+  const pokemonPromises = chain.map(pokemon => {
+    return axios.get(pokemon.url).then(res => {
+      pokemon.id = res.data.id;
+      return pokemon;
+    });
+  });
+
+  const detailsChain = await Promise.all(pokemonPromises);
+
+  return detailsChain.filter(pokemon => pokemon.id <= 905);
 };
 

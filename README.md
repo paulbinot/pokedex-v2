@@ -20,5 +20,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 ```bash
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
 ```
