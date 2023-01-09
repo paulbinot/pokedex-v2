@@ -11,38 +11,7 @@
             <p v-if="typeInfosAreLoading === 'loading'"></p>
             <div class="pokemons-infos__container border corners">
               <h2>Pokemons of type : <span style="color: yellow;">Please select a type</span></h2>
-    
-              <!-- corners -->
-              <div class="top-left-corner corner pixel outerpx"></div>
-              <div class="top-right-corner corner pixel outerpx"></div>
-              <div class="bottom-left-corner corner pixel outerpx"></div>
-              <div class="bottom-right-corner-hd corner">
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-              </div>
+            <Corners></Corners>
             </div>
           </div>
         </div>
@@ -59,10 +28,11 @@ import TypesList from '@/components/TypesList.vue';
 import PokemonList from '@/components/PokemonList.vue';
 import { getAllTypes } from '@/service/database';
 import Separator from '@/components/Separator.vue';
+import Corners from '@/components/Corners.vue';
 
 export default {
   name: "TypesView",
-  components: { TypesList, PokemonList, Separator },
+  components: { TypesList, PokemonList, Separator, Corners },
   data() {
     return {
       typesList: [],

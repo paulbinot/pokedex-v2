@@ -30,9 +30,11 @@ export default {
       };
 
       this.pokemonList = rawPokemonList;
-      console.log(this.pokemonList);
       this.isLoading = false;
-    }
+    },
+    // search(searched) {
+    //   this.pokemonList = this.pokemonList.filter(pokemon => pokemon.name.includes(searched.toLowerCase()) || pokemon.id.includes(searched.toLowerCase()))
+    // }
   }
 }
 </script>

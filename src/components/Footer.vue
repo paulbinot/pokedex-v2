@@ -2,52 +2,18 @@
     <Separator></Separator>
     <footer class="pokemons-infos__container border corners">
       <p>> made with love by <a href="https://www.paulbinot.com" target="_blank">Paul Binot</a></p>
-      <p>> Data : © Pokémon Company and its affiliates</p>
-  
-      <div class="top-left-corner corner pixel outerpx"></div>
-      <div class="top-right-corner corner pixel outerpx"></div>
-      <div class="bottom-left-corner corner pixel outerpx"></div>
-      <div class="bottom-right-corner-hd corner">
-        <div class="pixel innerpx"></div>
-        <div class="pixel innerpx"></div>
-        <div class="pixel innerpx"></div>
-        <div class="pixel innerpx"></div>
-        <div class="pixel borderpx"></div>
-  
-        <div class="pixel innerpx"></div>
-        <div class="pixel innerpx"></div>
-        <div class="pixel innerpx"></div>
-        <div class="pixel borderpx"></div>
-        <div class="pixel outerpx"></div>
-  
-        <div class="pixel innerpx"></div>
-        <div class="pixel innerpx"></div>
-        <div class="pixel borderpx"></div>
-        <div class="pixel outerpx"></div>
-        <div class="pixel outerpx"></div>
-  
-        <div class="pixel innerpx"></div>
-        <div class="pixel borderpx"></div>
-        <div class="pixel outerpx"></div>
-        <div class="pixel outerpx"></div>
-        <div class="pixel outerpx"></div>
-  
-        <div class="pixel borderpx"></div>
-        <div class="pixel outerpx"></div>
-        <div class="pixel outerpx"></div>
-        <div class="pixel outerpx"></div>
-        <div class="pixel outerpx"></div>
-  
-      </div>
+      <p>> Data : © Pokémon Company and its affiliates, API : <a href="https://pokeapi.co/">Pokeapi.co</a></p>
+      <Corners></Corners>
     </footer>
 </template>
 
 <script>
+import Corners from './Corners.vue';
 import Separator from './Separator.vue';
 
 export default {
     name: "Footer",
-    components: { Separator }
+    components: { Separator, Corners }
 }
 </script>
 

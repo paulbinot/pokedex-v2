@@ -1,6 +1,6 @@
 <template>
   <div class="evolution_chain">
-    <Card v-for="pokemon in pokemonList" :key="pokemon.id" :pokemon="pokemon" />
+    <Card v-for="pokemon in pokemonList" :key="pokemon.id" :pokemon="pokemon" style="width: 100%;" />
   </div>
 </template>
 
@@ -24,9 +24,7 @@ export default {
 <style scoped>
 .evolution_chain {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   overflow-x: scroll;
 }
-
-
 </style>

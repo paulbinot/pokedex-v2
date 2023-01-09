@@ -24,36 +24,7 @@
             :alt="`${pokemon.name} image`">
           <!-- <a href="/pokemons/<%= pokemon.id %>"><button>view more</button> </a> -->
           <a href="/pokemons/<%= pokemon.id %>">view more +</a>
-          <div class="top-left-corner corner pixel outerpx"></div>
-          <div class="top-right-corner corner pixel outerpx"></div>
-          <div class="bottom-left-corner corner pixel outerpx"></div>
-          <div class="bottom-right-corner-hd corner">
-            <div class="pixel innerpx"></div>
-            <div class="pixel innerpx"></div>
-            <div class="pixel innerpx"></div>
-            <div class="pixel innerpx"></div>
-            <div class="pixel borderpx"></div>
-            <div class="pixel innerpx"></div>
-            <div class="pixel innerpx"></div>
-            <div class="pixel innerpx"></div>
-            <div class="pixel borderpx"></div>
-            <div class="pixel outerpx"></div>
-            <div class="pixel innerpx"></div>
-            <div class="pixel innerpx"></div>
-            <div class="pixel borderpx"></div>
-            <div class="pixel outerpx"></div>
-            <div class="pixel outerpx"></div>
-            <div class="pixel innerpx"></div>
-            <div class="pixel borderpx"></div>
-            <div class="pixel outerpx"></div>
-            <div class="pixel outerpx"></div>
-            <div class="pixel outerpx"></div>
-            <div class="pixel borderpx"></div>
-            <div class="pixel outerpx"></div>
-            <div class="pixel outerpx"></div>
-            <div class="pixel outerpx"></div>
-            <div class="pixel outerpx"></div>
-          </div>
+          <Corners></Corners>
         </router-link>
       </div>
       <!-- </a> -->
@@ -66,13 +37,14 @@
   
 <script>
 import { RouterLink } from 'vue-router';
+import Corners from './Corners.vue';
 
 export default {
   name: "Card",
   props: {
     pokemon: Object
   },
-  components: { RouterLink }
+  components: { RouterLink, Corners }
 }
 </script>
 
@@ -83,11 +55,18 @@ export default {
   display: flex;
   flex-wrap: wrap;
   max-width: 100%;
-  justify-content: center;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  /* justify-content: center; */
+}
+
+.pokemon-grid::after {
+  content: "";
+  flex: auto;
 }
 
 .pokemon-grid-item {
-  width: 45%;
+  max-width: 45%;
   flex: 1 0 45%;
   margin: 0.8rem 0.5rem;
   border: 3px solid white;

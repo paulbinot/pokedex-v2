@@ -12,41 +12,7 @@
               </h1>
               <div class="pokemons-infos__image border corners">
                 <img :src="pokemon.sprites.front_default" :alt="`${pokemon.name} image`">
-    
-                <div class="top-left-corner corner pixel outerpx"></div>
-                <div class="top-right-corner corner pixel outerpx"></div>
-                <div class="bottom-left-corner corner pixel outerpx"></div>
-                <div class="bottom-right-corner-hd corner">
-                  <div class="pixel innerpx"></div>
-                  <div class="pixel innerpx"></div>
-                  <div class="pixel innerpx"></div>
-                  <div class="pixel innerpx"></div>
-                  <div class="pixel borderpx"></div>
-    
-                  <div class="pixel innerpx"></div>
-                  <div class="pixel innerpx"></div>
-                  <div class="pixel innerpx"></div>
-                  <div class="pixel borderpx"></div>
-                  <div class="pixel outerpx"></div>
-    
-                  <div class="pixel innerpx"></div>
-                  <div class="pixel innerpx"></div>
-                  <div class="pixel borderpx"></div>
-                  <div class="pixel outerpx"></div>
-                  <div class="pixel outerpx"></div>
-    
-                  <div class="pixel innerpx"></div>
-                  <div class="pixel borderpx"></div>
-                  <div class="pixel outerpx"></div>
-                  <div class="pixel outerpx"></div>
-                  <div class="pixel outerpx"></div>
-    
-                  <div class="pixel borderpx"></div>
-                  <div class="pixel outerpx"></div>
-                  <div class="pixel outerpx"></div>
-                  <div class="pixel outerpx"></div>
-                  <div class="pixel outerpx"></div>
-                </div>
+                <Corners></Corners>
               </div>
             </div>
           </div>
@@ -56,80 +22,14 @@
               <div class="pokemons-infos__types">
                 <TypeTag v-for="oneType of pokemon.types" :key="oneType.slot" :oneType="oneType.type.name" />
               </div>
-    
-              <div class="top-left-corner corner pixel outerpx"></div>
-              <div class="top-right-corner corner pixel outerpx"></div>
-              <div class="bottom-left-corner corner pixel outerpx"></div>
-              <div class="bottom-right-corner-hd corner">
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-              </div>
+              <Corners></Corners>
             </div>
+
             <div class="pokemons-infos__container border corners">
               <h4>> {{ pokemonSpecies.text }}</h4>
-    
-              <div class="top-left-corner corner pixel outerpx"></div>
-              <div class="top-right-corner corner pixel outerpx"></div>
-              <div class="bottom-left-corner corner pixel outerpx"></div>
-              <div class="bottom-right-corner-hd corner">
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-              </div>
+              <Corners></Corners>
             </div>
+
             <div class="pokemons-infos__container border corners">
               <h2>> Stats :</h2>
               <div class="pokemons-infos__base">
@@ -161,148 +61,47 @@
                   <p v-if="pokemonSpecies.capture_rate">{{ pokemonSpecies.capture_rate }}</p>
                 </div>
               </div>
-    
-              <div class="top-left-corner corner pixel outerpx"></div>
-              <div class="top-right-corner corner pixel outerpx"></div>
-              <div class="bottom-left-corner corner pixel outerpx"></div>
-              <div class="bottom-right-corner-hd corner">
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-              </div>
+              <Corners></Corners>
             </div>
-    
+
             <div class="btns">
               <a v-if="pokemon.id === 1" style="visibility: hidden">
                 <span>◄ </span>
                 <p> Previous</p>
               </a>
-    
+
               <a v-if="pokemon.id !== 1" @click="updatePokemon(pokemon.id - 1)">
                 <span>◄ </span>
                 <p> Previous</p>
               </a>
-    
+
               <a v-if="pokemon.id === 905" style="visibility: hidden">
                 <p>Next</p><span>►</span>
               </a>
-    
+
               <a v-if="pokemon.id !== 905" @click="updatePokemon(pokemon.id + 1)">
                 <p>Next</p><span>►</span>
               </a>
             </div>
-    
+
             <div class="pokemons-infos__container border corners">
               <h2>> Abilities :</h2>
-    
               <AbilitiesList :abilities="pokemonAbilities"></AbilitiesList>
-    
-              <div class="top-left-corner corner pixel outerpx"></div>
-              <div class="top-right-corner corner pixel outerpx"></div>
-              <div class="bottom-left-corner corner pixel outerpx"></div>
-              <div class="bottom-right-corner-hd corner">
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-              </div>
+              <Corners></Corners>
             </div>
+
             <div class="pokemons-infos__image border corners">
               <img :src="pokemon.sprites.front_shiny" :alt="`${pokemon.name} image`">
               <div class="legend">=> Shiny</div>
-    
-              <div class="top-left-corner corner pixel outerpx"></div>
-              <div class="top-right-corner corner pixel outerpx"></div>
-              <div class="bottom-left-corner corner pixel outerpx"></div>
-              <div class="bottom-right-corner-hd corner">
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-              </div>
+              <Corners></Corners>
             </div>
+
             <div class="pokemons-infos__container border corners">
               <h2>> More infos :</h2>
               <div class="pokemons-infos__base">
                 <div class="left">
-                  <h4>Avg. height</h4>
-                  <h4>Avg. weight</h4>
+                  <h4>Height</h4>
+                  <h4>Weight</h4>
                   <h4>Color</h4>
                   <h4>Shape</h4>
                 </div>
@@ -320,8 +119,10 @@
                   <h4>Mythical</h4>
                 </div>
                 <div class="right">
-                  <p v-if="pokemonSpecies.is_legendary">yes</p><p v-else>no</p>
-                  <p v-if="pokemonSpecies.is_mythical">yes</p><p v-else>no</p>
+                  <p v-if="pokemonSpecies.is_legendary">yes</p>
+                  <p v-else>no</p>
+                  <p v-if="pokemonSpecies.is_mythical">yes</p>
+                  <p v-else>no</p>
                 </div>
               </div>
               <Separator></Separator>
@@ -344,52 +145,19 @@
                   <p>{{ pokemonSpecies.names[2].name }}</p>
                 </div>
               </div>
-    
-              <div class="top-left-corner corner pixel outerpx"></div>
-              <div class="top-right-corner corner pixel outerpx"></div>
-              <div class="bottom-left-corner corner pixel outerpx"></div>
-              <div class="bottom-right-corner-hd corner">
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel innerpx"></div>
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-    
-                <div class="pixel borderpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-                <div class="pixel outerpx"></div>
-              </div>
+              <Corners></Corners>
             </div>
 
             <div class="evolution-chain-container">
               <h2>> Evolution chain</h2>
-              <EvolutionChain v-if="this.pokemonEvolutionChain.length !== 0" :pokemonList="this.pokemonEvolutionChain" @click="updatePokemon(this.$route.params.id)"></EvolutionChain>
+              <EvolutionChain v-if="this.pokemonEvolutionChain.length !== 0" :pokemonList="this.pokemonEvolutionChain"
+                @click="updatePokemon(this.$route.params.id)"></EvolutionChain>
             </div>
-    
+
           </div>
         </div>
         <div class="bottom">
-    
+
         </div>
       </div>
     </template>
@@ -403,10 +171,11 @@ import Separator from '@/components/Separator.vue';
 import { getPokemonById, getPokemonSpeciesById, getPokemonAbilities, getEvolutionChainByURL } from '@/service/database';
 import EvolutionChain from '@/components/EvolutionChain.vue';
 import TypesList from '@/components/TypesList.vue';
+import Corners from '@/components/Corners.vue';
 
 export default {
   name: 'PokemonView',
-  components: { TypeTag, AbilitiesList, Separator, EvolutionChain, TypesList },
+  components: { TypeTag, AbilitiesList, Separator, EvolutionChain, TypesList, Corners },
   props: {
     id: {
       // type: Number,
@@ -452,4 +221,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>

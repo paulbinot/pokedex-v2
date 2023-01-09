@@ -5,9 +5,10 @@ export async function getAllPokemons() {
   const response = await fetch(`${baseURL}pokemon?limit=905&offset=0`);
   const jsoned = await response.json();
   const pokemonList = jsoned.results;
-  for (let index = 0; index < pokemonList.length; index++) {
-    pokemonList[index].id = index+1;
-  };
+  pokemonList = pokemonList.map((pokemon, index) => {
+    pokemon.id = index + 1;
+    return pokemon;
+  });
   return pokemonList;
 };
 
@@ -64,8 +65,8 @@ export async function getPokemonAbilities(pokemonId) {
   const abilitiesList = await Promise.all(abilitiesPromises);
   
   for (const ability of abilitiesList) {
-    const enEffectEntries = ability.effect_entries.filter(entry => entry.language.name === "en");
-    ability.text = enEffectEntries[enEffectEntries.length - 1].effect;
+    const enEffectEntries = ability.flavor_text_entries.filter(entry => entry.language.name === "en");
+    ability.text = enEffectEntries[enEffectEntries.length - 1].flavor_text;
   }
 
   return abilitiesList;
